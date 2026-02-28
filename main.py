@@ -14,6 +14,9 @@ from agents.roadmap import RoadmapAgent
 from utils.llm_client import LLMClient, LLMClientError
 
 
+DEFAULT_DEMO_IDEA = "Build an AI crypto portfolio tracking app for retail investors."
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="ai-priority-architect",
@@ -43,7 +46,8 @@ def load_idea(args: argparse.Namespace) -> str:
     if args.idea_file:
         with open(args.idea_file, "r", encoding="utf-8") as file:
             return file.read().strip()
-    raise ValueError("Provide either an idea argument or --idea-file.")
+    print("No idea provided. Using default demo idea.")
+    return DEFAULT_DEMO_IDEA
 
 
 def run_pipeline(startup_idea: str) -> Dict[str, Any]:
