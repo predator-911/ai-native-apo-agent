@@ -83,6 +83,16 @@ def main() -> int:
         print(f"Input error: {exc}", file=sys.stderr)
         return 2
     except LLMClientError as exc:
+        message = str(exc)
+        if (
+            "Missing OPENAI_API_KEY" in message
+            or "Missing ANTHROPIC_API_KEY" in message
+            or "Unsupported LLM_PROVIDER" in message
+        ):
+            print(
+                "No API key detected. Please configure OPENAI_API_KEY or ANTHROPIC_API_KEY before running."
+            )
+            return 0
         print(f"LLM error: {exc}", file=sys.stderr)
         return 3
     except Exception as exc:  # broad fallback for CLI robustness
