@@ -1,0 +1,5 @@
+- Always prioritize modularity.
+- Prefer MVP constraints.
+- Remove feature creep.
+- Enforce structured output.
+- Never commit secrets.
